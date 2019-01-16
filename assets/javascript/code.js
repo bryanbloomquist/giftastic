@@ -9,13 +9,19 @@ function displayGIF() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        // var movieDiv = $("<div>")
-        // var ratingElement = $("<p>").text(response.Rated);
-        // var releaseDate = $("<p>").text(response.Released);
-        // var moviePlot = $("<p>").text(response.Plot);
-        // var moviePoster = $("<p>").html("<img src='"+response.Poster+"'>");
-        // movieDiv.append(ratingElement, releaseDate, moviePlot, moviePoster);
-        // $("#movies-view").prepend(movieDiv);
+        console.log(response);
+        var results = response.data;
+        console.log(results);
+        debugger;
+        for (var i = 0; i < results.length; i++){
+            var cartoonDiv = $("<div>");
+            var ratingElement = $("<p>").text(results[i].rating);
+            var cartoonGIF = $("<img>").attr("src", results[i].images.fixed_width_still.url)
+                .attr("data-still", results[i].images.fixed_width_still.url)
+                .attr("data-animate", results[i].images.fixed_width.url);
+            cartoonDiv.append(ratingElement, cartoonGIF);
+            $("#gifZone").prepend(cartoonDiv);
+        }
     });
 }
 
@@ -23,7 +29,7 @@ function renderButtons() {
     $("#buttonZone").empty();
     for(var i=0; i<topics.length; i++) {
         var b = $("<button>");
-        b.addClass("character");
+        b.addClass("cartoon");
         b.attr("data-name", topics[i]);
         b.text(topics[i]);
         $("#buttonZone").append(b);
@@ -36,5 +42,7 @@ $("#add-cartoon").on("click", function(event){
     topics.push(cartoon);
     renderButtons();
 })
+
+$(document).on("click", ".cartoon", displayGIF);
 
 renderButtons();
