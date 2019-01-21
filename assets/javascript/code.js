@@ -4,7 +4,7 @@ var searchNum = "10";
 
 function displayGIF() {
     var topic = $(this).attr("data-name");
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q="+topic+"&api_key=nNwVFgDI7U8D8nqDSI36ttSSNYfSGzs3&limit="+searchNum;
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q="+topic+"&api_key=nNwVFgDI7U8D8nqDSI36ttSSNYfSGzs3&limit="+searchNum;
     $.ajax({
         url: queryURL,
         method: "GET"
