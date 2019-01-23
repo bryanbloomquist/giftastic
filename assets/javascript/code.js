@@ -2,6 +2,8 @@ var topics = ["Star Wars Robot Chicken","Adventure Time","The Venture Bros.","Aq
 
 var searchNum = "10";
 
+
+// sets function to Display GIFS when selected cartoon button is clicked
 function displayGIF() {
     var topic = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q="+topic+"&api_key=nNwVFgDI7U8D8nqDSI36ttSSNYfSGzs3&limit="+searchNum;
@@ -25,6 +27,7 @@ function displayGIF() {
     });
 }
 
+// Activates/Deactivates selected GIF on click
 $(document).on("click", ".gif", function(){
     var clickedElement = $(this);
     var state = clickedElement.attr("data-state");
@@ -41,11 +44,13 @@ $(document).on("click", ".gif", function(){
     }
 });
 
+// Change the number of GIFs to load on screen
 $("#change-number").on("click", function(event){
     event.preventDefault();
     searchNum = $("#gif-num").val();
 });
 
+// Load the cartoon buttons
 function renderButtons() {
     $("#buttonZone").empty();
     for(var i=0; i<topics.length; i++) {
@@ -57,6 +62,7 @@ function renderButtons() {
     }
 }
 
+// let the user add a cartoon to the button array
 $("#add-cartoon").on("click", function(event){
     event.preventDefault();
     var cartoon = $("#user-toon").val().trim();
@@ -64,6 +70,7 @@ $("#add-cartoon").on("click", function(event){
     renderButtons();
 })
 
+// on click runs the function to display gifs 
 $(document).on("click", ".cartoon", displayGIF);
 
 renderButtons();
