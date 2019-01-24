@@ -60,6 +60,7 @@ function renderButtons() {
         b.text(topics[i]);
         $("#buttonZone").append(b);
     }
+    $("form").trigger("reset");
 }
 
 // let the user add a cartoon to the button array
