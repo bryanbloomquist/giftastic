@@ -49,6 +49,7 @@ $("#change-number").on("click", function(event){
     event.preventDefault();
     searchNum = $("#gif-num").val();
     $("form").trigger("reset");
+    $("#loadNum").html("  <strong>"+searchNum+"</strong>");
 });
 
 // Load the cartoon buttons
